@@ -5,6 +5,8 @@ import React from 'react'
 import styles from 'part:@sanity/components/formfields/default-style'
 import DefaultLabel from 'part:@sanity/components/labels/default'
 import ValidationStatus from 'part:@sanity/components/validation/status'
+import FieldStatus from '../fieldsets/FieldStatus'
+import {FieldPresence} from '../presence'
 
 export default class DefaultFormField extends React.PureComponent {
   static propTypes = {
@@ -20,7 +22,8 @@ export default class DefaultFormField extends React.PureComponent {
       PropTypes.shape({
         type: PropTypes.string
       })
-    )
+    ),
+    presence: PropTypes.any
   }
 
   static defaultProps = {
@@ -38,11 +41,11 @@ export default class DefaultFormField extends React.PureComponent {
       inline,
       wrapped,
       className,
-      markers
+      markers,
+      presence
     } = this.props
 
     const levelClass = `level_${level}`
-
     return (
       <div
         className={`
@@ -65,6 +68,9 @@ export default class DefaultFormField extends React.PureComponent {
                 </div>
                 {description && <div className={styles.description}>{description}</div>}
               </div>
+              <FieldStatus>
+                <FieldPresence presence={presence} />
+              </FieldStatus>
             </div>
           )}
           <div className={styles.content}>{children}</div>

@@ -174,7 +174,7 @@ export default class Fieldset extends React.Component {
                 )}
               </div>
               <FieldStatus>
-                <FieldPresence presence={presence} />
+                <FieldPresence presence={presence || []} />
               </FieldStatus>
             </div>
             {isCollapsible && (
